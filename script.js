@@ -201,12 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
           : '';
 
         item.innerHTML = `
-          <div class="photo-edit-overlay">
-            <span class="photo-badge-name">${photo.filename}</span>
-            ${dupBadgeHtml}
-          </div>
-          <button class="photo-remove-btn" title="Bu fotoğrafı kaldır">🗑️ Kaldır</button>
-          <button class="photo-restore-btn" title="Bu fotoğrafı geri yükle">↩️ Geri Al</button>
           <img src="${safeSrc}" alt="${album.name} - ${photo.filename}" loading="lazy">
         `;
 
@@ -239,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.classList.remove('photo-item-hidden');
           });
           expandWrapper.remove();
-          if (window.CullingTool) window.CullingTool.updateUI();
+
         });
 
         expandWrapper.appendChild(moreBtn);
