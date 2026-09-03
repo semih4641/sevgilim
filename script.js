@@ -413,70 +413,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ===================================
-  // BACKGROUND MUSIC CONTROLLER
+  // AUTOMATIC BACKGROUND MUSIC
   // ===================================
   const bgMusic = document.getElementById('bgMusic');
-  const musicBtn = document.getElementById('musicToggleBtn');
-  const musicIcon = document.getElementById('musicBtnIcon');
-  const musicText = document.getElementById('musicBtnText');
 
-  const updateMusicUI = (isPlaying) => {
-    if (!musicBtn) return;
-    if (isPlaying) {
-      musicBtn.classList.add('playing');
-      if (musicIcon) musicIcon.textContent = '🎵';
-      if (musicText) musicText.textContent = 'Aynı Göğün Altında';
-    } else {
-      musicBtn.classList.remove('playing');
-      if (musicIcon) musicIcon.textContent = '🔇';
-      if (musicText) musicText.textContent = 'Müziği Başlat';
+  const startMusic = () => {
+    if (!bgMusic) return;
+    bgMusic.muted = false;
+    bgMusic.volume = 1.0;
+    const p = bgMusic.play();
+    if (p !== undefined) {
+      p.then(() => {
+        removeInteractionListeners();
+      }).catch(err => {
+        // Browser requires first touch/click
+      });
     }
   };
 
-  const playMusic = () => {
-    if (!bgMusic) return;
-    bgMusic.play().then(() => {
-      sessionStorage.setItem('ela_music_muted', '0');
-      updateMusicUI(true);
-    }).catch(err => {
-      console.log('Autoplay prevented, awaiting user gesture:', err);
-      updateMusicUI(false);
+  const onFirstInteraction = () => {
+    startMusic();
+  };
+
+  const interactionEvents = ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'];
+  const addInteractionListeners = () => {
+    interactionEvents.forEach(evt => {
+      window.addEventListener(evt, onFirstInteraction, { passive: true });
     });
   };
 
-  const pauseMusic = () => {
-    if (!bgMusic) return;
-    bgMusic.pause();
-    sessionStorage.setItem('ela_music_muted', '1');
-    updateMusicUI(false);
+  const removeInteractionListeners = () => {
+    interactionEvents.forEach(evt => {
+      window.removeEventListener(evt, onFirstInteraction);
+    });
   };
 
-  if (musicBtn && bgMusic) {
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (bgMusic.paused) {
-        playMusic();
-      } else {
-        pauseMusic();
-      }
-    });
-
-    // Auto-start music on first user interaction if not explicitly muted
-    const startOnInteraction = () => {
-      if (sessionStorage.getItem('ela_music_muted') !== '1' && bgMusic.paused) {
-        playMusic();
-      }
-    };
-    document.addEventListener('click', startOnInteraction, { once: true });
-    document.addEventListener('touchstart', startOnInteraction, { once: true });
-
-    // If unlocked and not muted, attempt to play
-    if (sessionStorage.getItem('ela_unlocked') === '1' && sessionStorage.getItem('ela_music_muted') !== '1') {
-      playMusic();
-    }
+  if (bgMusic) {
+    startMusic();
+    addInteractionListeners();
   }
 
-  window.playBackgroundMusic = playMusic;
+  window.playBackgroundMusic = startMusic;
 
   // --- Execute Render ---
   renderAlbumGalleries();
