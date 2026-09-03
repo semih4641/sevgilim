@@ -21,8 +21,8 @@ const MEDIA_DATA = {
         {
           "filename": "photo_1_2026-09-03_11-12-23.jpg",
           "path": "ilk-tanistigimiz-zamanlar/photo_1_2026-09-03_11-12-23.jpg",
-          "size": 154031,
-          "hash": "45b54a32aefe437080cbb7c82817308a",
+          "size": 141417,
+          "hash": "9bc441038e79363dad5cc814a7b64a07",
           "isDuplicate": false,
           "duplicateOf": []
         },
