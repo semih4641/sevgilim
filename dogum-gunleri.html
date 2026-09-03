@@ -261,55 +261,8 @@
 
   <!-- ========== BIRTHDAY GALLERY SECTION ========== -->
   <section class="section" id="galeri">
-    <div class="trip-header reveal">
-      <div class="trip-number">— FOTOĞRAF KÖŞESİ —</div>
-      <h2 class="trip-title">Doğum Günlerinden Kareler</h2>
-      <p class="trip-subtitle">Kendi fotoğraflarını kolayca ekleyebileceğin anı albümü (Büyütmek için tıkla)</p>
-    </div>
-
-    <div class="bday-grid">
-      <!-- Photo Card 1 -->
-      <div class="bday-card reveal-scale stagger-1">
-        <div class="bday-card-img">
-          <img src="./images/dogumgunu_1.jpg" alt="Pasta başında dilek tutarken">
-          <span class="bday-tag">🎂 Pasta Anı</span>
-        </div>
-        <div class="bday-card-content">
-          <div>
-            <h3 class="bday-card-title">Dilek Tutarken</h3>
-            <p class="bday-card-text">Gözlerini yumup o güzel kalbinden geçirdiğin tüm dileklerin gerçekleştiği anlar.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Photo Card 2 -->
-      <div class="bday-card reveal-scale stagger-2">
-        <div class="bday-card-img">
-          <img src="./images/dogumgunu_2.jpg" alt="Kutlama masası ve gülerken">
-          <span class="bday-tag">🥂 Kutlama Akşamı</span>
-        </div>
-        <div class="bday-card-content">
-          <div>
-            <h3 class="bday-card-title">Gülüşünle Işıldayan Gece</h3>
-            <p class="bday-card-text">Masada baş başa otururken çektiğimiz, o samimi ve içten anların fotoğrafı.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Photo Card 3 -->
-      <div class="bday-card reveal-scale stagger-3">
-        <div class="bday-card-img">
-          <img src="./images/dogumgunu_3.jpg" alt="Hediye anı ve mutluluk">
-          <span class="bday-tag">🎁 Sürpriz Zamanı</span>
-        </div>
-        <div class="bday-card-content">
-          <div>
-            <h3 class="bday-card-title">Küçük Bir Sürpriz</h3>
-            <p class="bday-card-text">Yüzündeki o şaşkınlık ve ardından gelen sıcacık sarılmanın hatırası.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Real Photos Collection from dogum-gunu/ -->
+    <div class="album-gallery-container section-container" id="gallery-dogumgunu"></div>
   </section>
 
   <!-- ========== FOOTER ========== -->
@@ -337,13 +290,39 @@
     </div>
   </footer>
 
-  <!-- Lightbox -->
+  <!-- Lightbox for Photos -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Kapat">✕</button>
-    <img src="" alt="Büyütülmüş fotoğraf">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Kapat">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Önceki">‹</button>
+    <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Sonraki">›</button>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    <div class="lightbox-content-wrapper">
+      <img src="" alt="Büyütülmüş fotoğraf" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
   </div>
 
-  <!-- JavaScript -->
+  <!-- JavaScript Modules -->
+  <script src="media-data.js"></script>
   <script src="script.js"></script>
+  <script>
+    // Wish Candle Interaction
+    (function() {
+      const wishBtn = document.getElementById('wishBtn');
+      const wishIcon = document.getElementById('wishIcon');
+      const wishMsg = document.getElementById('wishMessage');
+      
+      if (wishBtn && wishMsg) {
+        function blowCandle() {
+          if (wishIcon) wishIcon.textContent = '💨✨';
+          wishMsg.classList.add('show');
+          wishBtn.innerHTML = '<span>❤️ Dileğin Kalbimde Saklı</span>';
+          wishBtn.style.background = 'linear-gradient(135deg, #4ade80, #22c55e)';
+        }
+        wishBtn.addEventListener('click', blowCandle);
+        if (wishIcon) wishIcon.addEventListener('click', blowCandle);
+      }
+    })();
+  </script>
 </body>
 </html>
