@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ela Nur'un doğum günlerine özel hazırlanmış anı ve fotoğraf galerisi sayfası.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>İyi ki Doğdun Ela Nur — Doğum Günü Anıları</title>
+  
+  <!-- Favicon - Birthday Cake -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Password Protection Overlay -->
+  <div id="passwordOverlay" style="
+    position: fixed; inset: 0; z-index: 99999;
+    background: linear-gradient(135deg, #0a0a0f 0%, #0f0a1a 40%, #0a0f1a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    transition: opacity 0.6s ease;
+  ">
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
+      <span style="position:absolute;top:10%;left:15%;font-size:2rem;opacity:0.08;animation:floatHeart 6s ease-in-out infinite">💛</span>
+      <span style="position:absolute;top:30%;left:75%;font-size:1.5rem;opacity:0.06;animation:floatHeart 8s ease-in-out infinite 1s">💛</span>
+      <span style="position:absolute;top:60%;left:10%;font-size:1rem;opacity:0.07;animation:floatHeart 7s ease-in-out infinite 2s">💛</span>
+    </div>
+    <style>
+      @keyframes floatHeart { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-20px) rotate(5deg)} }
+      @keyframes pulseGlow  { 0%,100%{box-shadow:0 0 30px rgba(255,200,0,0.15)} 50%{box-shadow:0 0 60px rgba(255,200,0,0.35)} }
+      @keyframes heartbeat  { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+      @keyframes shake      { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+      #pwdInput{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,200,0,0.3);border-radius:14px;color:#fff;font-size:1.4rem;letter-spacing:0.4em;outline:none;padding:14px 20px;text-align:center;width:200px;transition:border-color .3s,box-shadow .3s}
+      #pwdInput:focus{border-color:rgba(255,200,0,0.7);box-shadow:0 0 20px rgba(255,200,0,0.2)}
+      #pwdInput::placeholder{color:rgba(255,255,255,0.25);letter-spacing:0.1em}
+      #pwdBtn{background:linear-gradient(135deg,#f5c500,#e0a800);border:none;border-radius:14px;color:#1a1000;cursor:pointer;font-size:1rem;font-weight:700;margin-top:12px;padding:14px 40px;transition:transform .2s,box-shadow .2s;width:200px}
+      #pwdBtn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,0,0.4)}
+      #pwdError{color:#ff6b6b;font-size:.85rem;margin-top:10px;min-height:20px;opacity:0;transition:opacity .3s}
+    </style>
+    <div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(255,200,0,0.15);border-radius:28px;padding:48px 44px 40px;text-align:center;animation:pulseGlow 3s ease-in-out infinite;max-width:340px;width:90%">
+      <div style="font-size:3.5rem;margin-bottom:16px;animation:heartbeat 2s ease-in-out infinite">💛</div>
+      <h2 style="color:#f5c500;font-size:1.4rem;font-weight:700;margin:0 0 6px">Ela Nur'a Özel</h2>
+      <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;margin:0 0 28px;line-height:1.6">Bu site seninle paylaşılan özel anıları içeriyor.<br>Lütfen şifreyi gir 🔐</p>
+      <input id="pwdInput" type="password" placeholder="••••" maxlength="20" onkeydown="if(event.key==='Enter')checkPassword()" />
+      <div id="pwdError">Şifre yanlış, tekrar dene 💔</div>
+      <button id="pwdBtn" onclick="checkPassword()">Gir ✨</button>
+    </div>
+    <p style="color:rgba(255,255,255,0.2);font-size:0.75rem;margin-top:24px">Sadece seninle paylaşıldı 🤍</p>
+  </div>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('ela_unlocked') === '1') {
+        document.getElementById('passwordOverlay').style.display = 'none';
+      }
+    })();
+    function checkPassword() {
+      var val = document.getElementById('pwdInput').value;
+      var err = document.getElementById('pwdError');
+      if (val === '2004') {
+        sessionStorage.setItem('ela_unlocked', '1');
+        var o = document.getElementById('passwordOverlay');
+        o.style.opacity = '0';
+        setTimeout(function(){ o.style.display = 'none'; }, 600);
+      } else {
+        err.style.opacity = '1';
+        document.getElementById('pwdInput').style.animation = 'shake 0.4s ease';
+        setTimeout(function(){
+          document.getElementById('pwdInput').style.animation = '';
+          err.style.opacity = '0';
+        }, 2000);
+        document.getElementById('pwdInput').value = '';
+      }
+    }
+  </script>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-heart">🎂</div>
+    <div class="loading-text">Ela Nur'un Doğum Günleri...</div>
+  </div>
+
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-logo">Ela Nur'a</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-badge-link">🕊️ Gezilerimiz</a></li>
+      <li><a href="#dilek">Bir Dilek Tut</a></li>
+      <li><a href="#anilar">Kutlamalar</a></li>
+      <li><a href="#galeri">Fotoğraf Galerisi</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menü">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="./images/dogumgunu_hero.jpg" alt="Doğum Günü Kutlaması">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">İyi ki Doğdun Sevgilim 🎂</div>
+      
+      <h1 class="hero-title">Ömrümün En Güzel <em>Günü</em></h1>
+      
+      <p class="hero-subtitle">
+        Dünyaya gelişinle dünyamı aydınlatan kadına... Doğum günlerinden kalan en tatlı tebessümler.
+      </p>
+      
+      <div class="hero-divider"></div>
+      
+      <p class="hero-description">
+        Pastadaki her mumda tuttuğun dileğin içinde olmak, her yeni yaşında elini sımsıkı tutabilmek benim en büyük şansım. Bu köşe, senin doğduğun o mucizevi güne ve birlikte üflediğimiz tüm mumlara adandı.
+      </p>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Kutlamalar</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== TIMELINE CONNECTOR ========== -->
+  <div class="timeline-connector reveal">
+    <div class="timeline-line"></div>
+    <div class="timeline-dot"></div>
+  </div>
+
+  <!-- ========== WISH INTERACTIVE SECTION ========== -->
+  <section class="wish-section section" id="dilek">
+    <div class="section-container">
+      <div class="wish-card reveal-scale">
+        <div class="wish-icon" id="wishIcon" title="Tıkla ve sürprizi gör!">🕯️</div>
+        <h2 class="trip-title" style="font-size: 2.2rem; margin-bottom: 0.5rem;">Ela Nur İçin Bir Dilek Tut</h2>
+        <p class="trip-subtitle" style="margin-bottom: 1.5rem;">Gözlerini kapat, içinden en güzel dileğini geçir ve muma tıkla</p>
+        
+        <button class="wish-btn" id="wishBtn">
+          <span>✨ Dileğimi Tuttum & Üfle</span>
+        </button>
+
+        <div class="wish-message" id="wishMessage">
+          "İyi ki doğdun Ela Nur! Seninle geçen her gün bir hediye, seninle aldığım her yaş ömrümün en güzel mevsimi... Tuttuğun tüm dilekler gerçekleşsin, yüzün hep böyle gülsün sevgilim. Seni her şeyden çok seviyorum! ❤️"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Connector -->
+  <div class="timeline-connector reveal">
+    <div class="timeline-line"></div>
+    <div class="timeline-dot"></div>
+  </div>
+
+  <!-- ========== BIRTHDAY STORIES SECTION ========== -->
+  <section class="trip-section section" id="anilar">
+    <div class="trip-header reveal">
+      <div class="trip-number">— DOĞUM GÜNÜ ANILARI —</div>
+      <h2 class="trip-title">Yeni Yaşlar, Aynı Sonsuz Sevgi</h2>
+      <p class="trip-subtitle">Her mumda ayrı bir umut, her karede sen</p>
+    </div>
+
+    <!-- Story Card 1 -->
+    <div class="trip-card">
+      <div class="trip-image-wrapper reveal-left">
+        <img src="./images/dogumgunu_1.jpg" alt="Ela Nur'un doğum günü pastası ve mumu">
+        <div class="trip-image-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Pastadaki Mumlar
+        </div>
+      </div>
+      
+      <div class="trip-text reveal-right">
+        <div class="trip-text-quote">
+          <p>
+            Gözlerini kapatıp pastanın üzerindeki mumu üflediğin o an... Yüzüne vuran sıcak sarı ışık ve dudaklarındaki o utangaç gülümseme, gördüğüm en büyüleyici manzaraydı.
+          </p>
+          <br>
+          <p>
+            O an ne dilediğini bilmiyorum ama ben tek bir şey diledim: Ömrümün sonuna kadar o mumları seninle birlikte söndürmek, her yeni yaşını senin gözlerinin içine bakarak kutlamak.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Connector -->
+    <div class="timeline-connector reveal" style="padding: 3rem 0;">
+      <div class="timeline-line"></div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <!-- Story Card 2 -->
+    <div class="trip-card reverse">
+      <div class="trip-image-wrapper reveal-right">
+        <img src="./images/dogumgunu_2.jpg" alt="Doğum günü akşam yemeği ve kutlaması">
+        <div class="trip-image-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Baş Başa Kutlama
+        </div>
+      </div>
+      
+      <div class="trip-text reveal-left">
+        <div class="trip-text-quote">
+          <p>
+            Mum ışıklarının altında, masanın karşı tarafından bana bakan o sıcacık gözlerin... Dünyanın bütün gürültüsü kapıda kalmıştı sanki; o akşam sadece senin sesin, senin kahkahan ve aramızdaki o görünmez bağ vardı.
+          </p>
+          <br>
+          <p>
+            Doğum günün vesilesiyle bir kez daha anladım ki, seninle geçirilen sıradan bir akşam bile bir ömre bedelken, bu özel günde yanında olmak tarifsiz bir zenginlikti.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Connector -->
+    <div class="timeline-connector reveal" style="padding: 3rem 0;">
+      <div class="timeline-line"></div>
+      <div class="timeline-dot"></div>
+    </div>
+
+    <!-- Story Card 3 -->
+    <div class="trip-card">
+      <div class="trip-image-wrapper reveal-left">
+        <img src="./images/dogumgunu_3.jpg" alt="Sürpriz hediye ve özel not">
+        <div class="trip-image-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Sana En Güzel Hediye
+        </div>
+      </div>
+      
+      <div class="trip-text reveal-right">
+        <div class="trip-text-quote">
+          <p>
+            Sana hangi paketi uzatsam, hangi hediyeyi versem az gelirdi. Çünkü bana varlığınla hediye ettiğin sevginin dünyada hiçbir karşılığı yok.
+          </p>
+          <br>
+          <p>
+            Paketlerin üstündeki fiyonklar çözülür, kurdeleler geçer ama sana olan sevgim her geçen yaşınla beraber daha da kök salıyor. Benim sana en büyük hediyem, sana adanmış bir ömürdür Ela Nur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Connector -->
+  <div class="timeline-connector reveal">
+    <div class="timeline-line"></div>
+    <div class="timeline-dot"></div>
+  </div>
+
+  <!-- ========== BIRTHDAY GALLERY SECTION ========== -->
+  <section class="section" id="galeri">
+    <div class="trip-header reveal">
+      <div class="trip-number">— FOTOĞRAF KÖŞESİ —</div>
+      <h2 class="trip-title">Doğum Günlerinden Kareler</h2>
+      <p class="trip-subtitle">Kendi fotoğraflarını kolayca ekleyebileceğin anı albümü (Büyütmek için tıkla)</p>
+    </div>
+
+    <div class="bday-grid">
+      <!-- Photo Card 1 -->
+      <div class="bday-card reveal-scale stagger-1">
+        <div class="bday-card-img">
+          <img src="./images/dogumgunu_1.jpg" alt="Pasta başında dilek tutarken">
+          <span class="bday-tag">🎂 Pasta Anı</span>
+        </div>
+        <div class="bday-card-content">
+          <div>
+            <h3 class="bday-card-title">Dilek Tutarken</h3>
+            <p class="bday-card-text">Gözlerini yumup o güzel kalbinden geçirdiğin tüm dileklerin gerçekleştiği anlar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo Card 2 -->
+      <div class="bday-card reveal-scale stagger-2">
+        <div class="bday-card-img">
+          <img src="./images/dogumgunu_2.jpg" alt="Kutlama masası ve gülerken">
+          <span class="bday-tag">🥂 Kutlama Akşamı</span>
+        </div>
+        <div class="bday-card-content">
+          <div>
+            <h3 class="bday-card-title">Gülüşünle Işıldayan Gece</h3>
+            <p class="bday-card-text">Masada baş başa otururken çektiğimiz, o samimi ve içten anların fotoğrafı.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo Card 3 -->
+      <div class="bday-card reveal-scale stagger-3">
+        <div class="bday-card-img">
+          <img src="./images/dogumgunu_3.jpg" alt="Hediye anı ve mutluluk">
+          <span class="bday-tag">🎁 Sürpriz Zamanı</span>
+        </div>
+        <div class="bday-card-content">
+          <div>
+            <h3 class="bday-card-title">Küçük Bir Sürpriz</h3>
+            <p class="bday-card-text">Yüzündeki o şaşkınlık ve ardından gelen sıcacık sarılmanın hatırası.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="section-container">
+      <div class="reveal">
+        <div class="footer-heart">💛</div>
+        
+        <p class="footer-message">
+          Dünyadaki en güzel doğum günü çocuğu sensin. Her yaşın bir öncekinden çok daha mutlu, çok daha huzurlu ve hep benim yanımda geçsin.
+        </p>
+        
+        <p class="footer-love">İyi ki doğdun, iyi ki benim oldun Ela Nur ❤️</p>
+        
+        <div style="margin: 2rem 0;">
+          <a href="index.html" class="nav-badge-link" style="font-size: 0.95rem; padding: 0.6rem 1.4rem !important;">
+            🕊️ Gezilerimiz & Anılarımız Sayfasına Dön
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>Ela Nur'un Yeni Yaşına Özel — <span id="currentYear"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Kapat">✕</button>
+    <img src="" alt="Büyütülmüş fotoğraf">
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
