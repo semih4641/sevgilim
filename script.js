@@ -372,8 +372,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoPlayer = document.getElementById('videoLightboxPlayer');
   const videoClose = document.getElementById('videoLightboxClose');
 
+  const pauseBgMusic = () => {
+    const bg = document.getElementById('bgMusic');
+    if (bg && !bg.paused) {
+      bg.pause();
+    }
+  };
+
+  const resumeBgMusic = () => {
+    const bg = document.getElementById('bgMusic');
+    if (videoLightbox && videoLightbox.classList.contains('active')) return;
+    if (bg && bg.paused) {
+      bg.play().catch(() => {});
+    }
+  };
+
   const openVideoLightbox = (src) => {
     if (!videoLightbox || !videoPlayer) return;
+    pauseBgMusic();
     videoPlayer.src = src;
     videoLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -386,6 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     videoPlayer.src = '';
     videoLightbox.classList.remove('active');
     document.body.style.overflow = '';
+    resumeBgMusic();
   };
 
   if (videoClose) videoClose.addEventListener('click', closeVideoLightbox);
@@ -394,6 +411,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === videoLightbox) closeVideoLightbox();
     });
   }
+
+  // Universal Video Play/Pause Listeners for Background Music
+  document.addEventListener('play', (e) => {
+    if (e.target && e.target.tagName === 'VIDEO') {
+      pauseBgMusic();
+    }
+  }, true);
+
+  document.addEventListener('pause', (e) => {
+    if (e.target && e.target.tagName === 'VIDEO') {
+      resumeBgMusic();
+    }
+  }, true);
+
+  document.addEventListener('ended', (e) => {
+    if (e.target && e.target.tagName === 'VIDEO') {
+      resumeBgMusic();
+    }
+  }, true);
 
   // Keyboard Navigation (Arrow Keys & Escape)
   document.addEventListener('keydown', (e) => {
@@ -419,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const startMusic = () => {
     if (!bgMusic) return;
+    if (videoLightbox && videoLightbox.classList.contains('active')) return;
     bgMusic.muted = false;
     bgMusic.volume = 1.0;
     const p = bgMusic.play();
