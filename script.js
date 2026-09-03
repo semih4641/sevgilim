@@ -412,15 +412,76 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  // ===================================
+  // BACKGROUND MUSIC CONTROLLER
+  // ===================================
+  const bgMusic = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicToggleBtn');
+  const musicIcon = document.getElementById('musicBtnIcon');
+  const musicText = document.getElementById('musicBtnText');
+
+  const updateMusicUI = (isPlaying) => {
+    if (!musicBtn) return;
+    if (isPlaying) {
+      musicBtn.classList.add('playing');
+      if (musicIcon) musicIcon.textContent = '🎵';
+      if (musicText) musicText.textContent = 'Aynı Göğün Altında';
+    } else {
+      musicBtn.classList.remove('playing');
+      if (musicIcon) musicIcon.textContent = '🔇';
+      if (musicText) musicText.textContent = 'Müziği Başlat';
+    }
+  };
+
+  const playMusic = () => {
+    if (!bgMusic) return;
+    bgMusic.play().then(() => {
+      sessionStorage.setItem('ela_music_muted', '0');
+      updateMusicUI(true);
+    }).catch(err => {
+      console.log('Autoplay prevented, awaiting user gesture:', err);
+      updateMusicUI(false);
+    });
+  };
+
+  const pauseMusic = () => {
+    if (!bgMusic) return;
+    bgMusic.pause();
+    sessionStorage.setItem('ela_music_muted', '1');
+    updateMusicUI(false);
+  };
+
+  if (musicBtn && bgMusic) {
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (bgMusic.paused) {
+        playMusic();
+      } else {
+        pauseMusic();
+      }
+    });
+
+    // Auto-start music on first user interaction if not explicitly muted
+    const startOnInteraction = () => {
+      if (sessionStorage.getItem('ela_music_muted') !== '1' && bgMusic.paused) {
+        playMusic();
+      }
+    };
+    document.addEventListener('click', startOnInteraction, { once: true });
+    document.addEventListener('touchstart', startOnInteraction, { once: true });
+
+    // If unlocked and not muted, attempt to play
+    if (sessionStorage.getItem('ela_unlocked') === '1' && sessionStorage.getItem('ela_music_muted') !== '1') {
+      playMusic();
+    }
+  }
+
+  window.playBackgroundMusic = playMusic;
+
   // --- Execute Render ---
   renderAlbumGalleries();
   renderVideoGallery();
   setupRevealObserver();
-
-  // If culling tool is loaded, sync UI
-  if (window.CullingTool && typeof window.CullingTool.updateUI === 'function') {
-    window.CullingTool.updateUI();
-  }
 
   console.log('💛 Ela Nur için hazırlandı — Tüm fotoğraflar ve videolar yüklendi.');
 });

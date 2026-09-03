@@ -135,6 +135,12 @@
         var o = document.getElementById('passwordOverlay');
         o.style.opacity = '0';
         setTimeout(function(){ o.style.display = 'none'; }, 600);
+        if (typeof window.playBackgroundMusic === 'function') {
+          window.playBackgroundMusic();
+        } else {
+          var m = document.getElementById('bgMusic');
+          if (m) m.play().catch(function(){});
+        }
       } else {
         err.style.opacity = '1';
         document.getElementById('pwdInput').style.animation = 'shake 0.4s ease';
@@ -155,6 +161,18 @@
   <!-- Ambient Glow Effects -->
   <div class="ambient-glow ambient-glow-1"></div>
   <div class="ambient-glow ambient-glow-2"></div>
+
+  <!-- Background Music Player -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="./ayni-gogun-altinda.mp3" type="audio/mpeg">
+    <source src="./ayni-gogun-altinda.m4a" type="audio/mp4">
+  </audio>
+
+  <!-- Floating Music Toggle Button -->
+  <div class="music-btn" id="musicToggleBtn" title="Müziği Duraklat / Çal">
+    <div class="music-btn-icon" id="musicBtnIcon">🎵</div>
+    <span class="music-btn-text" id="musicBtnText">Aynı Göğün Altında</span>
+  </div>
 
   <!-- Navigation -->
   <nav class="nav" id="mainNav">
