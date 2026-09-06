@@ -1566,4 +1566,305 @@ a:hover {
   display: block;
 }
 
+/* ===================================
+   BUCKET LIST / YAPILACAKLAR LİSTESİ
+   =================================== */
+
+.bucket-list-section {
+  padding: var(--section-padding) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.bucket-list-section::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  animation: floatAmbient 15s ease-in-out infinite;
+}
+
+.bucket-list-section::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201, 122, 122, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  animation: floatAmbient 18s ease-in-out infinite reverse;
+}
+
+@keyframes floatAmbient {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -20px); }
+}
+
+/* --- Bucket List Grid --- */
+.bucket-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Bucket Card --- */
+.bucket-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.5s var(--transition-smooth);
+  position: relative;
+  cursor: default;
+}
+
+.bucket-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-card-hover);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px var(--gold-glow);
+}
+
+/* --- Card Image --- */
+.bucket-card-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.bucket-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--transition-smooth), filter 0.5s ease;
+}
+
+.bucket-card:hover .bucket-card-image img {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.bucket-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(10, 10, 15, 0.7) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bucket-card:hover .bucket-card-overlay {
+  opacity: 1;
+}
+
+.bucket-status {
+  background: rgba(201, 169, 110, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  border-radius: 20px;
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 6px 14px;
+}
+
+.bucket-card-number {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.05em;
+  transition: color 0.4s ease;
+}
+
+.bucket-card:hover .bucket-card-number {
+  color: rgba(201, 169, 110, 0.4);
+}
+
+/* --- Card Content --- */
+.bucket-card-content {
+  padding: 22px 20px 24px;
+}
+
+.bucket-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.bucket-tag {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.tag-eglence {
+  background: rgba(255, 159, 67, 0.12);
+  color: #ffb347;
+  border: 1px solid rgba(255, 159, 67, 0.2);
+}
+
+.tag-romantik {
+  background: rgba(255, 105, 135, 0.12);
+  color: #ff8fab;
+  border: 1px solid rgba(255, 105, 135, 0.2);
+}
+
+.tag-tatil {
+  background: rgba(0, 206, 209, 0.12);
+  color: #5de0e6;
+  border: 1px solid rgba(0, 206, 209, 0.2);
+}
+
+.tag-macera {
+  background: rgba(147, 130, 255, 0.12);
+  color: #b8b0ff;
+  border: 1px solid rgba(147, 130, 255, 0.2);
+}
+
+.tag-turkiye {
+  background: rgba(255, 50, 50, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 50, 50, 0.15);
+}
+
+.tag-yurtdisi {
+  background: rgba(201, 169, 110, 0.1);
+  color: var(--gold-light);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+}
+
+.bucket-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+.bucket-card:hover .bucket-card-title {
+  color: var(--gold-light);
+}
+
+.bucket-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.bucket-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bucket-highlights span {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 4px 10px;
+  transition: all 0.3s ease;
+}
+
+.bucket-card:hover .bucket-highlights span {
+  color: var(--text-secondary);
+  border-color: rgba(201, 169, 110, 0.15);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+/* --- Bucket Footer --- */
+.bucket-footer {
+  text-align: center;
+  max-width: var(--container-width);
+  margin: 50px auto 0;
+  padding: 0 20px;
+}
+
+.bucket-footer-text {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.bucket-footer-small {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
+/* --- Responsive Bucket List --- */
+@media (max-width: 1024px) {
+  .bucket-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bucket-list-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0 16px;
+  }
+
+  .bucket-card-image {
+    height: 200px;
+  }
+
+  .bucket-card-content {
+    padding: 18px 16px 20px;
+  }
+
+  .bucket-card-title {
+    font-size: 1.25rem;
+  }
+
+  .bucket-footer-text {
+    font-size: 1.1rem;
+  }
+
+  .bucket-card-overlay {
+    opacity: 1;
+  }
+}
 

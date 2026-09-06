@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ela Nur ile birlikte keşfedeceğimiz hayal rotalarımız ve yapılacaklar listemiz.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Hayallerimiz — Birlikte Keşfedeceğimiz Yerler</title>
+  
+  <!-- Favicon - Plane -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Password Protection Overlay -->
+  <div id="passwordOverlay" style="
+    position: fixed; inset: 0; z-index: 99999;
+    background: linear-gradient(135deg, #0a0a0f 0%, #0f0a1a 40%, #0a0f1a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    transition: opacity 0.6s ease;
+  ">
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
+      <span style="position:absolute;top:10%;left:15%;font-size:2rem;opacity:0.08;animation:floatHeart 6s ease-in-out infinite">💛</span>
+      <span style="position:absolute;top:30%;left:75%;font-size:1.5rem;opacity:0.06;animation:floatHeart 8s ease-in-out infinite 1s">💛</span>
+      <span style="position:absolute;top:60%;left:10%;font-size:1rem;opacity:0.07;animation:floatHeart 7s ease-in-out infinite 2s">💛</span>
+    </div>
+    <style>
+      @keyframes floatHeart { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-20px) rotate(5deg)} }
+      @keyframes pulseGlow  { 0%,100%{box-shadow:0 0 30px rgba(255,200,0,0.15)} 50%{box-shadow:0 0 60px rgba(255,200,0,0.35)} }
+      @keyframes heartbeat  { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+      @keyframes shake      { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+      #pwdInput{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,200,0,0.3);border-radius:14px;color:#fff;font-size:1.4rem;letter-spacing:0.4em;outline:none;padding:14px 20px;text-align:center;width:200px;transition:border-color .3s,box-shadow .3s}
+      #pwdInput:focus{border-color:rgba(255,200,0,0.7);box-shadow:0 0 20px rgba(255,200,0,0.2)}
+      #pwdInput::placeholder{color:rgba(255,255,255,0.25);letter-spacing:0.1em}
+      #pwdBtn{background:linear-gradient(135deg,#f5c500,#e0a800);border:none;border-radius:14px;color:#1a1000;cursor:pointer;font-size:1rem;font-weight:700;margin-top:12px;padding:14px 40px;transition:transform .2s,box-shadow .2s;width:200px}
+      #pwdBtn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,0,0.4)}
+      #pwdError{color:#ff6b6b;font-size:.85rem;margin-top:10px;min-height:20px;opacity:0;transition:opacity .3s}
+    </style>
+    <div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border:1px solid rgba(255,200,0,0.15);border-radius:28px;padding:48px 44px 40px;text-align:center;animation:pulseGlow 3s ease-in-out infinite;max-width:340px;width:90%">
+      <div style="font-size:3.5rem;margin-bottom:16px;animation:heartbeat 2s ease-in-out infinite">💛</div>
+      <h2 style="color:#f5c500;font-size:1.4rem;font-weight:700;margin:0 0 6px">Ela Nur'a Özel</h2>
+      <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;margin:0 0 28px;line-height:1.6">Bu site seninle paylaşılan özel anıları içeriyor.<br>Lütfen şifreyi gir 🔐</p>
+      <input id="pwdInput" type="password" placeholder="••••" maxlength="20" onkeydown="if(event.key==='Enter')checkPassword()" />
+      <div id="pwdError">Şifre yanlış, tekrar dene 💔</div>
+      <button id="pwdBtn" onclick="checkPassword()">Gir ✨</button>
+    </div>
+    <p style="color:rgba(255,255,255,0.2);font-size:0.75rem;margin-top:24px">Sadece seninle paylaşıldı 🤍</p>
+  </div>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('ela_unlocked') === '1') {
+        document.getElementById('passwordOverlay').style.display = 'none';
+      }
+    })();
+    function checkPassword() {
+      var val = document.getElementById('pwdInput').value;
+      var err = document.getElementById('pwdError');
+      if (val === '2004') {
+        sessionStorage.setItem('ela_unlocked', '1');
+        var o = document.getElementById('passwordOverlay');
+        o.style.opacity = '0';
+        setTimeout(function(){ o.style.display = 'none'; }, 600);
+        if (typeof window.playBackgroundMusic === 'function') {
+          window.playBackgroundMusic();
+        } else {
+          var m = document.getElementById('bgMusic');
+          if (m) m.play().catch(function(){});
+        }
+      } else {
+        err.style.opacity = '1';
+        document.getElementById('pwdInput').style.animation = 'shake 0.4s ease';
+        setTimeout(function(){
+          document.getElementById('pwdInput').style.animation = '';
+          err.style.opacity = '0';
+        }, 2000);
+        document.getElementById('pwdInput').value = '';
+      }
+    }
+  </script>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-heart">✈️</div>
+    <div class="loading-text">Dünyayı Keşfetmeye...</div>
+  </div>
+
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <!-- Background Music Player (Otomatik Çalar) -->
+  <audio id="bgMusic" autoplay loop playsinline preload="auto">
+    <source src="./ayni-gogun-altinda.mp3" type="audio/mpeg">
+    <source src="./ayni-gogun-altinda.m4a" type="audio/mp4">
+  </audio>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-logo">Ela Nur'a</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-badge-link">🕊️ Gezilerimiz & Anılarımız</a></li>
+      <li><a href="#bucketlist" style="color:var(--gold-light); font-weight:600;">✈️ Hayallerimiz</a></li>
+      <li><a href="dogum-gunleri.html">🎂 Kutlamalar</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menü">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="./images/bucketlist/maldives.jpg" alt="Hayallerimiz">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">Birlikte Gideceğimiz Yerler 🌍</div>
+      
+      <h1 class="hero-title">Dünyayı <em>Seninle</em> Keşfetmek</h1>
+      
+      <p class="hero-subtitle">
+        El ele yürüyeceğimiz yeni sokaklar, izleyeceğimiz yeni gün batımları.
+      </p>
+      
+      <div class="hero-divider"></div>
+      
+      <p class="hero-description">
+        Bir gün her birini tek tek çizeceğimiz, dünyanın en güzel köşelerinden oluşan hayal rotamız. Her şeyden öte, benim en büyük hayalim bu yerleri sadece seninle görmek.
+      </p>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Rotaları Gör</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== TIMELINE CONNECTOR ========== -->
+  <div class="timeline-connector reveal">
+    <div class="timeline-line"></div>
+    <div class="timeline-dot"></div>
+  </div>
+
+  <!-- ========== BUCKET LIST / YAPILACAKLAR LİSTESİ ========== -->
+  <section class="bucket-list-section section" id="bucketlist">
+    <div class="trip-header reveal">
+      <div class="trip-number">— ✈️ —</div>
+      <h2 class="trip-title">Birlikte Keşfedeceğimiz Yerler</h2>
+      <p class="trip-subtitle">Seninle hayalini kurduğumuz, bir gün el ele gezeceğimiz dünyanın en güzel köşeleri 🌍💛</p>
+    </div>
+
+    <div class="bucket-list-grid">
+
+      <!-- 1. Land of Legends -->
+      <div class="bucket-card reveal" data-category="eğlence" style="cursor: pointer;" onclick="openGalleryModal('legends')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/land-of-legends.jpg" alt="The Land of Legends" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">01</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-eglence">🎢 Eğlence Parkı</span>
+            <span class="bucket-tag tag-turkiye">🇹🇷 Antalya</span>
+          </div>
+          <h3 class="bucket-card-title">The Land of Legends</h3>
+          <p class="bucket-card-desc">SpongeBob dünyasından su kaydıraklarına, dev roller coaster'lardan sihirli gösterilere kadar her şey! Seninle çocuk gibi eğleneceğimiz, çığlık atıp kahkaha atacağımız bir rüya parkı.</p>
+          <div class="bucket-highlights">
+            <span>🧽 SpongeBob Alanı</span>
+            <span>🎢 Su Kaydırakları</span>
+            <span>🏰 Masal Kalesi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. California Adventure -->
+      <div class="bucket-card reveal" data-category="eğlence" style="cursor: pointer;" onclick="openGalleryModal('disney')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/disney-california-main.jpg" alt="Disney California Adventure" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">02</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-eglence">🎠 Disney Parkı</span>
+            <span class="bucket-tag tag-yurtdisi">🇺🇸 California</span>
+          </div>
+          <h3 class="bucket-card-title">Disney California Adventure</h3>
+          <p class="bucket-card-desc">Pixar Pier'de dev dönme dolap, Cars Land'de Radiator Springs, ve geceleri gökyüzünü aydınlatan havai fişek gösterisi! Birlikte masal dünyasına adım atacağız.</p>
+          <div class="bucket-highlights">
+            <span>🚗 Cars Land</span>
+            <span>🎡 Pixar Pier</span>
+            <span>🎆 Gece Gösterisi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Paris -->
+      <div class="bucket-card reveal" data-category="romantik" style="cursor: pointer;" onclick="openGalleryModal('paris')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/paris.jpg" alt="Paris - Eyfel Kulesi" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">03</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-romantik">💗 Romantik</span>
+            <span class="bucket-tag tag-yurtdisi">🇫🇷 Fransa</span>
+          </div>
+          <h3 class="bucket-card-title">Paris — Aşk Şehri</h3>
+          <p class="bucket-card-desc">Eyfel Kulesi'nin altında el ele yürümek, Seine Nehri'nde tekne turu, Montmartre'ın dar sokaklarında kaybolmak... Dünyanın en romantik şehrinde seninle olmak bir rüya.</p>
+          <div class="bucket-highlights">
+            <span>🗼 Eyfel Kulesi</span>
+            <span>🥐 Cafe Kültürü</span>
+            <span>🎨 Louvre Müzesi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Santorini -->
+      <div class="bucket-card reveal" data-category="romantik" style="cursor: pointer;" onclick="openGalleryModal('santorini')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/santorini.jpg" alt="Santorini Yunanistan" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">04</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-romantik">💗 Romantik</span>
+            <span class="bucket-tag tag-yurtdisi">🇬🇷 Yunanistan</span>
+          </div>
+          <h3 class="bucket-card-title">Santorini — Mavi Beyaz Rüya</h3>
+          <p class="bucket-card-desc">Bembeyaz evler, masmavi kubbeler ve dünyanın en güzel gün batımı... Oia'da el ele oturup ufka bakarak güneşin denize karışmasını izlemek var hayalimde seninle.</p>
+          <div class="bucket-highlights">
+            <span>🌅 Oia Gün Batımı</span>
+            <span>🏖️ Kırmızı Plaj</span>
+            <span>🍷 Şarap Tadımı</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Venedik -->
+      <div class="bucket-card reveal" data-category="romantik" style="cursor: pointer;" onclick="openGalleryModal('venice')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/venice.jpg" alt="Venedik İtalya" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">05</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-romantik">💗 Romantik</span>
+            <span class="bucket-tag tag-yurtdisi">🇮🇹 İtalya</span>
+          </div>
+          <h3 class="bucket-card-title">Venedik — Gondol'da Aşk</h3>
+          <p class="bucket-card-desc">Gondolda seninle dar kanallardan geçmek, San Marco Meydanı'nda dans etmek, İtalyan mutfağının en güzel tatlarını birlikte keşfetmek... Venedik bizi bekliyor!</p>
+          <div class="bucket-highlights">
+            <span>🛶 Gondol Turu</span>
+            <span>🍕 İtalyan Mutfağı</span>
+            <span>🎭 Karnaval</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Maldivler -->
+      <div class="bucket-card reveal" data-category="tatil" style="cursor: pointer;" onclick="openGalleryModal('maldives')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/maldives.jpg" alt="Maldivler" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">06</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-tatil">🏝️ Tropik Cennet</span>
+            <span class="bucket-tag tag-yurtdisi">🇲🇻 Maldivler</span>
+          </div>
+          <h3 class="bucket-card-title">Maldivler — Su Üstü Villa</h3>
+          <p class="bucket-card-desc">Turkuaz denizin üzerinde camdan tabanlı villada uyanmak, dalarak mercanları keşfetmek, geceleri yıldızların altında yüzmek... Seninle cenneti yaşamak istiyorum.</p>
+          <div class="bucket-highlights">
+            <span>🐠 Dalış</span>
+            <span>🏠 Su Üstü Villa</span>
+            <span>✨ Biolüminesans</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Dubai -->
+      <div class="bucket-card reveal" data-category="macera" style="cursor: pointer;" onclick="openGalleryModal('dubai')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/dubai.jpg" alt="Dubai" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">07</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-macera">🌆 Modern Şehir</span>
+            <span class="bucket-tag tag-yurtdisi">🇦🇪 BAE</span>
+          </div>
+          <h3 class="bucket-card-title">Dubai — Gökyüzüne Dokunmak</h3>
+          <p class="bucket-card-desc">Burj Khalifa'nın tepesinden dünyaya bakmak, çöl safarisi yapmak, devasa alışveriş merkezlerinde kaybolmak ve fıskiye gösterisini izlemek... Dubai'de her şey büyüleyici!</p>
+          <div class="bucket-highlights">
+            <span>🏗️ Burj Khalifa</span>
+            <span>🐪 Çöl Safarisi</span>
+            <span>⛲ Fıskiye Şov</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Tokyo -->
+      <div class="bucket-card reveal" data-category="macera" style="cursor: pointer;" onclick="openGalleryModal('tokyo')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/tokyo.jpg" alt="Tokyo Japonya" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">08</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-macera">🗾 Kültür</span>
+            <span class="bucket-tag tag-yurtdisi">🇯🇵 Japonya</span>
+          </div>
+          <h3 class="bucket-card-title">Tokyo — Neon ve Kiraz Çiçekleri</h3>
+          <p class="bucket-card-desc">Shibuya geçidinde el ele yürümek, kiraz çiçekleri altında piknik yapmak, ramen yemek, tapınakları gezmek... Doğu ile Batı'nın buluştuğu bu büyülü şehir bizi çağırıyor!</p>
+          <div class="bucket-highlights">
+            <span>🌸 Sakura Sezonu</span>
+            <span>🍜 Ramen Sokağı</span>
+            <span>⛩️ Tapınaklar</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- 8.5 Kyoto -->
+      <div class="bucket-card reveal" data-category="macera" style="cursor: pointer;" onclick="openGalleryModal('kyoto')">
+        <div class="bucket-card-image">
+          <img src="https://loremflickr.com/1200/800/kyoto,temple" alt="Kyoto Japonya" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">11</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-macera">🗾 Gelenek</span>
+            <span class="bucket-tag tag-yurtdisi">🇯🇵 Japonya</span>
+          </div>
+          <h3 class="bucket-card-title">Kyoto & Fuji Dağı</h3>
+          <p class="bucket-card-desc">Geleneksel Japon evleri arasında yürümek, bambu ormanında kaybolmak ve görkemli Fuji dağını izlemek... Japonya'nın ruhunu seninle yaşamak istiyorum.</p>
+          <div class="bucket-highlights">
+            <span>⛩️ Tapınaklar</span>
+            <span>🏔️ Fuji Dağı</span>
+            <span>🎋 Bambu Ormanı</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8.6 China -->
+      <div class="bucket-card reveal" data-category="macera" style="cursor: pointer;" onclick="openGalleryModal('china')">
+        <div class="bucket-card-image">
+          <img src="https://loremflickr.com/1200/800/greatwall,china" alt="Çin" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">10</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-macera">🐉 Tarih</span>
+            <span class="bucket-tag tag-yurtdisi">🇨🇳 Çin</span>
+          </div>
+          <h3 class="bucket-card-title">Çin — Kadim Doğa ve Tarih</h3>
+          <p class="bucket-card-desc">Çin Seddi'nde yürümek, Yasak Şehir'in gizemlerini çözmek ve Avatar filmine ilham olan Zhangjiajie dağlarının zirvesine birlikte çıkmak... Gerçek bir macera!</p>
+          <div class="bucket-highlights">
+            <span>🏯 Çin Seddi</span>
+            <span>⛩️ Yasak Şehir</span>
+            <span>⛰️ Avatar Dağları</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Bora Bora -->
+      <div class="bucket-card reveal" data-category="tatil" style="cursor: pointer;" onclick="openGalleryModal('borabora')">
+        <div class="bucket-card-image">
+          <img src="./images/bucketlist/bora-bora.jpg" alt="Bora Bora" loading="lazy">
+          <div class="bucket-card-overlay">
+            <span class="bucket-status" style="background: rgba(255,50,50,0.8); color:#fff;">✨ Tıkla ve Keşfet</span>
+          </div>
+          <div class="bucket-card-number">09</div>
+        </div>
+        <div class="bucket-card-content">
+          <div class="bucket-tags">
+            <span class="bucket-tag tag-tatil">🏝️ Tropik Ada</span>
+            <span class="bucket-tag tag-yurtdisi">🇵🇫 Fransız Polinezyası</span>
+          </div>
+          <h3 class="bucket-card-title">Bora Bora — Dünya Cenneti</h3>
+          <p class="bucket-card-desc">Otemanu Dağı manzarasında su üstü bungalovda uyanmak, kristal berrak lagünde yüzmek, tropikal balıkları izlemek... Dünyanın en güzel adasında seninle kaybolmak!</p>
+          <div class="bucket-highlights">
+            <span>🏔️ Otemanu Dağı</span>
+            <span>🐢 Kaplumbağalar</span>
+            <span>🌺 Tropikal Doğa</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bucket-footer reveal">
+      <p class="bucket-footer-text">
+        Bu liste daha yeni başlıyor... Seninle keşfedecek daha nice güzel yerler var! 🌎✨<br>
+        <span class="bucket-footer-small">Hayallerimiz büyüdükçe bu liste de büyüyecek 💛</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="section-container">
+      <div class="reveal">
+        <div class="footer-heart">💛</div>
+        
+        <p class="footer-message">
+          Birlikte kurduğumuz tüm bu hayaller, bir gün gerçeğe dönüşecek.
+        </p>
+        
+        <p class="footer-love">Dünyayı seninle gezmek istiyorum Ela Nur ❤️</p>
+        
+        <div style="margin: 2rem 0;">
+          <a href="index.html" class="nav-badge-link" style="font-size: 0.95rem; padding: 0.6rem 1.4rem !important;">
+            🕊️ Gezilerimiz & Anılarımız Sayfasına Dön
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>Birlikte Kurulan Hayaller — <span id="currentYear"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox for Photos -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Kapat">✕</button>
+    <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Önceki">‹</button>
+    <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Sonraki">›</button>
+    <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    <div class="lightbox-content-wrapper">
+      <img src="" alt="Büyütülmüş fotoğraf" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="media-data.js"></script>
+  <script src="script.js"></script>
+  
+  <!-- Generic Gallery Modal -->
+  <style>
+    .gallery-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 10, 15, 0.95);
+      z-index: 99999; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      backdrop-filter: blur(15px);
+    }
+    .gallery-modal.active { opacity: 1; pointer-events: auto; }
+    .gallery-close {
+      position: absolute; top: 30px; right: 40px; font-size: 2rem; color: #fff;
+      cursor: pointer; background: rgba(255,255,255,0.1); border: none;
+      width: 50px; height: 50px; border-radius: 50%;
+    }
+    .gallery-content {
+      display: flex; gap: 20px; max-width: 1200px; width: 90%;
+      overflow-x: auto; padding: 20px; snap-type: x mandatory;
+    }
+    .gallery-content::-webkit-scrollbar { height: 8px; }
+    .gallery-content::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 10px; }
+    .gallery-item {
+      flex: 0 0 100%; max-width: 700px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; scroll-snap-align: center;
+    }
+    .gallery-item img {
+      width: 100%; max-height: 60vh; object-fit: cover;
+      border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .gallery-caption {
+      margin-top: 15px; color: var(--gold-light); font-size: 1.2rem;
+      font-family: var(--font-heading); text-align: center;
+    }
+    .gallery-title {
+      position: absolute; top: 40px; color: var(--gold-light);
+      font-family: var(--font-heading); font-size: 2rem; text-align: center;
+    }
+    .gallery-nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); color: #fff; border: none;
+      font-size: 2rem; padding: 15px 20px; border-radius: 12px;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .gallery-nav-btn:hover { background: rgba(255,255,255,0.2); }
+    .gallery-prev { left: 40px; }
+    .gallery-next { right: 40px; }
+    
+    @media(max-width: 768px) {
+      .gallery-nav-btn { display: none; }
+      .gallery-title { top: 20px; font-size: 1.5rem; }
+      .gallery-close { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.5rem; }
+    }
+  </style>
+
+  <div class="gallery-modal" id="galleryModal">
+    <button class="gallery-close" onclick="closeGalleryModal()">✕</button>
+    <div class="gallery-title" id="galleryTitle">Galeri</div>
+    <button class="gallery-nav-btn gallery-prev" onclick="scrollGallery(-1)">‹</button>
+    <button class="gallery-nav-btn gallery-next" onclick="scrollGallery(1)">›</button>
+    
+    <div class="gallery-content" id="galleryContent">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <script>
+    const galleryData = {
+      'legends': {
+        title: "🎢 The Land of Legends",
+        images: [
+          { src: "https://loremflickr.com/1200/800/rollercoaster,amusementpark", caption: "Heyecan Dolu Roller Coasterlar" },
+          { src: "https://loremflickr.com/1200/800/waterpark,slides", caption: "Su Kaydırakları ve Havuzlar" },
+          { src: "https://loremflickr.com/1200/800/castle,theme", caption: "Büyülü Masal Kalesi Gösterisi" }
+        ]
+      },
+      'disney': {
+        title: "🎠 Disney California Adventure",
+        images: [
+          { src: "./images/bucketlist/disney-cars.jpg", caption: "🚗 Cars Land & Radiator Springs" },
+          { src: "./images/bucketlist/disney-avengers.jpg", caption: "🦸‍♂️ Avengers Campus" },
+          { src: "./images/bucketlist/disney-california-main.jpg", caption: "🎡 Pixar Pier & Gece Eğlencesi" }
+        ]
+      },
+      'paris': {
+        title: "🗼 Paris — Aşk Şehri",
+        images: [
+          { src: "https://loremflickr.com/1200/800/paris,eiffel,night", caption: "Eyfel Kulesi Gece Işıkları" },
+          { src: "https://loremflickr.com/1200/800/louvre,museum", caption: "Louvre Müzesi & Piramit" },
+          { src: "https://loremflickr.com/1200/800/paris,cafe", caption: "Romantik Paris Kafeleri" }
+        ]
+      },
+      'santorini': {
+        title: "🌅 Santorini — Yunanistan",
+        images: [
+          { src: "https://loremflickr.com/1200/800/santorini,sunset", caption: "Oia Gün Batımı" },
+          { src: "https://loremflickr.com/1200/800/santorini,architecture", caption: "Mavi Kubbeli Bembeyaz Evler" },
+          { src: "https://loremflickr.com/1200/800/redbeach,greece", caption: "Kırmızı Plaj (Red Beach)" }
+        ]
+      },
+      'venice': {
+        title: "🛶 Venedik — İtalya",
+        images: [
+          { src: "https://loremflickr.com/1200/800/venice,gondola", caption: "Büyük Kanal'da Gondol Turu" },
+          { src: "https://loremflickr.com/1200/800/venice,sanmarco", caption: "San Marco Meydanı" },
+          { src: "https://loremflickr.com/1200/800/italian,pizza", caption: "Geleneksel İtalyan Mutfağı" }
+        ]
+      },
+      'maldives': {
+        title: "🏝️ Maldivler",
+        images: [
+          { src: "https://loremflickr.com/1200/800/maldives,watervilla", caption: "Su Üstü Villaları" },
+          { src: "https://loremflickr.com/1200/800/maldives,diving", caption: "Mercan Resiflerinde Dalış" },
+          { src: "https://loremflickr.com/1200/800/bioluminescence,beach", caption: "Biolüminesans Plaj" }
+        ]
+      },
+      'dubai': {
+        title: "🏙️ Dubai",
+        images: [
+          { src: "https://loremflickr.com/1200/800/dubai,burjkhalifa", caption: "Burj Khalifa Manzarası" },
+          { src: "https://loremflickr.com/1200/800/dubai,desertsafari", caption: "Çölde Safari Macerası" },
+          { src: "https://loremflickr.com/1200/800/dubai,fountain", caption: "Dubai Fıskiye Şovu" }
+        ]
+      },
+      'tokyo': {
+        title: "🌸 Tokyo — Japonya",
+        images: [
+          { src: "https://loremflickr.com/1200/800/tokyo,cherryblossom", caption: "Sakura Mevsiminde Tokyo" },
+          { src: "https://loremflickr.com/1200/800/shibuya,crossing", caption: "Işıl Işıl Shibuya Geçidi" },
+          { src: "https://loremflickr.com/1200/800/japan,ramen", caption: "Geleneksel Ramen Kültürü" }
+        ]
+      },
+      'kyoto': {
+        title: "⛩️ Kyoto & Fuji Dağı",
+        images: [
+          { src: "https://loremflickr.com/1200/800/kyoto,temple", caption: "Tarihi Kyoto Tapınakları" },
+          { src: "https://loremflickr.com/1200/800/mountfuji,japan", caption: "Görkemli Fuji Dağı" },
+          { src: "https://loremflickr.com/1200/800/arashiyama,bamboo", caption: "Arashiyama Bambu Ormanı" }
+        ]
+      },
+      'china': {
+        title: "🐉 Çin Kültürü & Doğa",
+        images: [
+          { src: "https://loremflickr.com/1200/800/greatwall,china", caption: "Tarihi Çin Seddi" },
+          { src: "https://loremflickr.com/1200/800/forbiddencity,beijing", caption: "Yasak Şehir (Beijing)" },
+          { src: "https://loremflickr.com/1200/800/zhangjiajie,mountains", caption: "Zhangjiajie (Avatar) Dağları" }
+        ]
+      },
+      'borabora': {
+        title: "🌺 Bora Bora",
+        images: [
+          { src: "https://loremflickr.com/1200/800/borabora,otemanu", caption: "Otemanu Dağı Manzarası" },
+          { src: "https://loremflickr.com/1200/800/turtle,swimming", caption: "Deniz Kaplumbağaları" },
+          { src: "https://loremflickr.com/1200/800/polynesia,lagoon", caption: "Kristal Berrak Lagün" }
+        ]
+      }
+    };
+
+    function openGalleryModal(placeId) {
+      const data = galleryData[placeId];
+      if (!data) return;
+      
+      document.getElementById('galleryTitle').textContent = data.title;
+      
+      const content = document.getElementById('galleryContent');
+      content.innerHTML = '';
+      
+      data.images.forEach(img => {
+        content.innerHTML += `
+          <div class="gallery-item">
+            <img src="${img.src}" alt="${img.caption}">
+            <div class="gallery-caption">${img.caption}</div>
+          </div>
+        `;
+      });
+      
+      document.getElementById('galleryModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset scroll
+      setTimeout(() => content.scrollLeft = 0, 50);
+    }
+
+    function closeGalleryModal() {
+      document.getElementById('galleryModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function scrollGallery(dir) {
+      const container = document.getElementById('galleryContent');
+      const itemWidth = container.offsetWidth;
+      container.scrollBy({ left: dir * itemWidth, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
